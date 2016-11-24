@@ -50,8 +50,12 @@
  <script type="text/javascript">
      
      $('.list-li').touchWipe({itemDelete: '.btn'});
-     
- 
+     $(".btn").bind("touchend",function(){
+     	$(this).parent().slideDown('1500', function() {
+     		$(this).remove();
+     	});
+     }) 
+ 	
  </script>
  </body>
  </html>
