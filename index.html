@@ -116,17 +116,19 @@
                     // 然后假装在上传，可以post base64格式，也可以构造blob对象上传，也可以用微信JSSDK上传  
                     
                     var progress = 0;  
-                    function uploading() {  
-                      $preview.find('.weui_uploader_status_content').text(++progress + '%');  
-                      if (progress < 100) {  
-                        setTimeout(uploading, 30);  
-                      }  
-                      else {  
+
+                      function uploading() {  
+                        $preview.find('.weui_uploader_status_content').text(++progress + '%');  
+                        if (progress < 100) {  
+                          setTimeout(uploading, 30);  
+                        }  
+                        else {  
                             // 如果是失败，塞一个失败图标  
                             //$preview.find('.weui_uploader_status_content').html('<i class="weui_icon_warn"></i>');  
                             $preview.removeClass('weui_uploader_status').find('.weui_uploader_status_content').remove();  
                           }  
-                        }  
+                        } 
+
                         setTimeout(uploading, 30);  
                       };  
                       
