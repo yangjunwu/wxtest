@@ -4,7 +4,7 @@
  4  * 参数：itemDelete  删除按钮的样式名
  5  */
  
-  (function($) {
+  
     $.fn.touchWipe = function(option) {
       var defaults = {
        itemDelete: '.item-delete', //删除元素
@@ -20,13 +20,15 @@
      $(this).on('touchstart', function(event) {
        event.preventDefault();
        var obj = this;
-       initX = event.targetTouches[0].pageX;
+      // alert(event.originalEvent.targetTouches)
+       initX = event.originalEvent.targetTouches[0].pageX;
+
        objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
        if (objX == 0) {
          $(this).on('touchmove', function(event) {
            event.preventDefault();
            var obj = this;
-           moveX = event.targetTouches[0].pageX;
+           moveX = event.originalEvent.targetTouches[0].pageX;
            X = moveX - initX;
            if (X >= 0) {
              obj.style.WebkitTransform = "translateX(" + 0 + "px)";
@@ -43,7 +45,7 @@
          $(this).on('touchmove', function(event) {
            event.preventDefault();
            var obj = this;
-           moveX = event.targetTouches[0].pageX;
+           moveX = event.originalEvent.targetTouches[0].pageX;
            X = moveX - initX;
            if (X >= 0) {
              var r = -delWidth + Math.abs(X);
@@ -80,4 +82,4 @@
      return this;
    };
  
- })(Zepto);
+ 
